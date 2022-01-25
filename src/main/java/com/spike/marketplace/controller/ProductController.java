@@ -13,7 +13,7 @@ import java.util.List;
 
 public class ProductController {
     @Autowired
-    private ProductService productService;      //Para arreglar el error tuve que implementar la annotation @Service en la Implementacion del Servicio "ProducrServiceImp"
+    private ProductService productService;
 
     @PostMapping("/add")
     public String add(@RequestBody Product product){

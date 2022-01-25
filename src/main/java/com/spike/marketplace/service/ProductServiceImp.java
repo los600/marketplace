@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 
-@Service        //Arregla el error del controlador
+@Service
 public class ProductServiceImp implements ProductService{
 
     @Autowired
