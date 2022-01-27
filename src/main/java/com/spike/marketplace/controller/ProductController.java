@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.PublicKey;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -38,5 +39,20 @@ public class ProductController {
         } catch (NoSuchElementException e) {
             return new ResponseEntity<Product>(HttpStatus.NOT_FOUND);
         }
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<Product> update (@RequestBody Product product, @PathVariable Integer id){
+        try{
+            Product existingProduct=productService.get(id);
+            productService.save(product);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }catch (NoSuchElementException e){
+            return new ResponseEntity<Product>(HttpStatus.NOT_FOUND);
+        }
+    }
+    @DeleteMapping("/{id}")
+    public String delete(@PathVariable Integer id){
+    productService.delete(id);
+    return "Deleted product "+id;
     }
 }

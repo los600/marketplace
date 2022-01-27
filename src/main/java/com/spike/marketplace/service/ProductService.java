@@ -10,4 +10,8 @@ public interface ProductService {
     public List<Product> getAllProducts();
 
     public Product get(Integer id);
+
+    public Product save (Product product);
+
+    public void delete (Integer id);
 }
