@@ -19,25 +19,24 @@ public class ProductController {
     private ProductService productService;
 
     @PostMapping("/add")
-    public String add(@RequestBody Product product){
+    public String add(@RequestBody Product product) {
         productService.saveProduct(product);
         return "New product is added";
     }
 
     @GetMapping("/getAll")
-    public List<Product> getAllProducts(){
+    public List<Product> getAllProducts() {
         return productService.getAllProducts();
     }
 
-    @PutMapping ("/{id}")
-    public ResponseEntity<Product> update (@RequestBody Product product, @PathVariable Integer id){
-        try{
-            Product existingProduct = productService.get(id);
-            productService.saveProduct(product);
-            return new ResponseEntity<>(HttpStatus.OK);
-        }catch (NoSuchElementException e){
+    @GetMapping("/{id}")
+    public ResponseEntity<Product> get(@PathVariable Integer id) {
+
+        try {
+            Product product = productService.get(id);
+            return new ResponseEntity<Product>(product, HttpStatus.OK);
+        } catch (NoSuchElementException e) {
             return new ResponseEntity<Product>(HttpStatus.NOT_FOUND);
         }
     }
-
 }

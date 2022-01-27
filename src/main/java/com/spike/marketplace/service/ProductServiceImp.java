@@ -26,5 +26,8 @@ public class ProductServiceImp implements ProductService{
         return productRepository.findAll();
     }
 
-
+    @Override
+    public Product get(Integer id) {
+        return productRepository.findById(id).get();
+    }
 }
